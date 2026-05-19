@@ -1,0 +1,50 @@
+.footer {
+  border-top: 1px solid var(--border);
+  margin-top: 4rem;
+  padding: 2rem 0;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--section-pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.copy {
+  font-size: 0.85rem;
+  color: var(--foreground-subtle);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.iconLink {
+  display: inline-flex;
+  color: var(--foreground-muted);
+  opacity: 0.7;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.iconLink:hover {
+  opacity: 1;
+  color: var(--foreground);
+}
+
+.email {
+  font-size: 0.85rem;
+  color: var(--foreground-muted);
+  font-family: var(--font-mono);
+  transition: color 0.15s ease;
+}
+
+.email:hover {
+  color: var(--foreground);
+}
