@@ -4,10 +4,31 @@ import { GeistMono } from 'geist/font/mono';
 import { Analytics } from '@vercel/analytics/react';
 import './globals.css';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Jack Shields — Senior Software Engineer',
   description:
     'Senior full-stack software engineer building with security in mind. Sole developer across a multi-brand technology platform — clients include Red Bull, Beavertown, and Peak Performance.',
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    title: 'Jack Shields — Senior Software Engineer',
+    description:
+      'Senior full-stack software engineer building with security in mind. Sole developer across a multi-brand technology platform — clients include Red Bull, Beavertown, and Peak Performance.',
+    siteName: 'Jack Shields',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jack Shields — Senior Software Engineer',
+    description:
+      'Senior full-stack software engineer building with security in mind. Sole developer across a multi-brand technology platform — clients include Red Bull, Beavertown, and Peak Performance.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
