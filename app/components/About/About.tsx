@@ -11,8 +11,7 @@ const About = () => {
             <p>
               Senior full-stack engineer building with security in mind. Currently the sole
               developer across a multi-brand technology platform — independently scoping,
-              building, and shipping high-impact projects for clients including Red Bull,
-              Beavertown, and Peak Performance.
+              building, and shipping high-impact projects for blue-chip consumer brands.
             </p>
             <p>
               Certified in eWPT and eJPT alongside Harvard&apos;s CS50 Cybersecurity, with

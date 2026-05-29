@@ -10,20 +10,20 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Jack Shields — Senior Software Engineer',
   description:
-    'Senior full-stack software engineer building with security in mind. Sole developer across a multi-brand technology platform — clients include Red Bull, Beavertown, and Peak Performance.',
+    'Senior full-stack software engineer building with security in mind. Comfortable owning the full product lifecycle — infrastructure, DevOps, API design, and front-end delivery.',
   openGraph: {
     type: 'website',
     url: siteUrl,
     title: 'Jack Shields — Senior Software Engineer',
     description:
-      'Senior full-stack software engineer building with security in mind. Sole developer across a multi-brand technology platform — clients include Red Bull, Beavertown, and Peak Performance.',
+      'Senior full-stack software engineer building with security in mind. Comfortable owning the full product lifecycle — infrastructure, DevOps, API design, and front-end delivery.',
     siteName: 'Jack Shields',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Jack Shields — Senior Software Engineer',
     description:
-      'Senior full-stack software engineer building with security in mind. Sole developer across a multi-brand technology platform — clients include Red Bull, Beavertown, and Peak Performance.',
+      'Senior full-stack software engineer building with security in mind. Comfortable owning the full product lifecycle — infrastructure, DevOps, API design, and front-end delivery.',
   },
   robots: {
     index: true,

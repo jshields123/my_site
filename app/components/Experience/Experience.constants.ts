@@ -12,7 +12,7 @@ export const EXPERIENCE: Role[] = [
     company: 'London',
     dates: '2023 — Present',
     description:
-      'Sole developer across the full technology stack for a multi-brand studio. Built a fully automated fulfilment pipeline integrating internal PM tooling with the DPD courier API. Rebuilt the customer ordering portal from Svelte to Next.js with a fresh Directus CMS and consolidated shop pathways. Designed a business-logic API layer for workflow automation, delivered a Red Bull City Guide product with a non-technical city management system, stood up GitHub Actions CI/CD from scratch across all projects, and recovered ~50% of server capacity through a full infrastructure audit.',
+      'Sole developer across the full technology stack for a multi-brand studio. Built a fully automated fulfilment pipeline integrating internal PM tooling with the DPD courier API. Rebuilt the customer ordering portal from Svelte to Next.js with a fresh Directus CMS and consolidated shop pathways. Designed a business-logic API layer for workflow automation, delivered a branded city guide product with a non-technical city management system, stood up GitHub Actions CI/CD from scratch across all projects, and recovered ~50% of server capacity through a full infrastructure audit.',
     tags: ['Next.js', 'TypeScript', 'Directus', 'Docker', 'GitHub Actions', 'AWS'],
   },
   {
