@@ -17,7 +17,7 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-        <a href="mailto:jackshields@live.co.uk" className={styles.cta}>
+        <a href="mailto:jackcyberpro30@gmail.com" className={styles.cta}>
           Contact
         </a>
       </nav>

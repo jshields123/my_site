@@ -15,11 +15,10 @@ const Hero = () => {
         </h1>
         <p className={styles.subtitle}>
           Full-stack engineer shipping end-to-end products — infrastructure, APIs, and front-end.
-          Currently the sole developer across a multi-brand platform for clients including
-          Red Bull, Beavertown, and Peak Performance.
+          Currently the sole developer across a multi-brand platform for blue-chip consumer brands.
         </p>
         <div className={styles.ctas}>
-          <a href="mailto:jackshields@live.co.uk" className={styles.ctaPrimary}>
+          <a href="mailto:jackcyberpro30@gmail.com" className={styles.ctaPrimary}>
             Get in touch
           </a>
           <a

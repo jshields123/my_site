@@ -26,8 +26,8 @@ const Footer = () => {
           >
             <LinkedInIcon size={18} />
           </a>
-          <a href="mailto:jackshields@live.co.uk" className={styles.email}>
-            jackshields@live.co.uk
+          <a href="mailto:jackcyberpro30@gmail.com" className={styles.email}>
+            jackcyberpro30@gmail.com
           </a>
         </div>
       </div>
