@@ -18,12 +18,12 @@ export function TrackPage({ track }: { track: Track }) {
     ? [
         { key: 'credentials', label: 'Credentials', title: 'Certified to test.', node: <Credentials /> },
         { key: 'method', label: 'Method', title: 'How I test.', node: <Method /> },
-        { key: 'work', label: 'Both sides', title: 'Every system I built, I had to defend.', node: <Cases lean="break" /> },
+        { key: 'work', label: 'Both sides', title: 'Every system I built, I had to defend.', node: <Cases page="security" lean="break" /> },
         { key: 'experience', label: 'Field background', title: 'Systems I’ve seen from the inside.', node: <Experience track={track} /> },
         { key: 'toolkit', label: 'Toolkit', title: 'The kit.', node: <Toolkit track={track} /> },
       ]
     : [
-        { key: 'work', label: 'Selected work', title: 'Built to ship. Hardened by habit.', node: <Cases lean="build" /> },
+        { key: 'work', label: 'Selected work', title: 'Built to ship. Hardened by habit.', node: <Cases page="engineer" lean="build" /> },
         { key: 'experience', label: 'Experience', title: 'Where I’ve shipped.', node: <Experience track={track} /> },
         { key: 'toolkit', label: 'Stack', title: 'The stack.', node: <Toolkit track={track} /> },
         { key: 'credentials', label: 'Credentials', title: 'And the security edge.', node: <Credentials /> },

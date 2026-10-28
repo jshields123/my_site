@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CASES, CERTS, PERSON, ROLES, TOOLKIT, TRACKS } from '../../content/profile';
+import { CASES, CASE_ORDER, CERTS, PERSON, ROLES, TOOLKIT, TRACKS } from '../../content/profile';
 
 describe('content', () => {
   it('frames every role for both tracks', () => {
@@ -21,8 +21,14 @@ describe('content', () => {
     for (const url of Object.values(PERSON.links)) expect(url).toMatch(/^https:\/\//);
   });
 
+  it('only orders case studies that exist, and gives every security panel a title', () => {
+    const ids = new Set(CASES.map((c) => c.id));
+    for (const list of Object.values(CASE_ORDER)) for (const id of list) expect(ids.has(id), id).toBe(true);
+    for (const c of CASES) expect(Boolean(c.hardened)).toBe(Boolean(c.hardenedTitle));
+  });
+
   it('has unique case and cert identifiers', () => {
-    expect(new Set(CASES.map((c) => c.title)).size).toBe(CASES.length);
+    expect(new Set(CASES.map((c) => c.id)).size).toBe(CASES.length);
     expect(new Set(CERTS.map((c) => c.badge)).size).toBe(CERTS.length);
   });
 });

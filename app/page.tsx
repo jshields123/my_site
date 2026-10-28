@@ -19,7 +19,7 @@ export default function Home() {
         </section>
         <section className={`${styles.section} wrap`} aria-labelledby="work">
           <SectionHead index="02" label="Selected work" title="Every project has two sides." id="work" />
-          <Cases />
+          <Cases page="hub" />
         </section>
         <section className={`${styles.section} wrap`} aria-labelledby="credentials">
           <SectionHead index="03" label="Credentials" title="On paper, too." id="credentials" />

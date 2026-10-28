@@ -18,6 +18,13 @@
 .hardened p { color: var(--dark-muted); font-size: 13px; }
 .built .metric, .hardened .metric { font-family: var(--display); font-weight: 800; font-size: clamp(48px, 6vw, 96px); line-height: .9; letter-spacing: -.04em; color: var(--blue); max-width: none; }
 
+.approx { font-family: var(--sans); font-weight: 300; margin-right: .04em; }
+
+/* A case with no security panel spans the full row. */
+.cases .case.single { grid-template-columns: 1fr; }
+.single .built { min-height: 220px; }
+.single .built p { max-width: 70ch; }
+
 @media (max-width: 760px) {
   .even .case, .build .case, .break .case, .even .case:hover, .even .case:has(.hardened:hover) { grid-template-columns: 1fr; }
   .case > div { min-height: 0; }

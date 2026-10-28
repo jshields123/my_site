@@ -16,11 +16,15 @@ export interface Role {
 }
 
 export interface CaseStudy {
+  id: string;
   title: string;
   metric?: string;
+  // Panel labels default to Built / Hardened; an audit reads better as Audited / Remediated.
+  labels?: [string, string];
   built: string;
-  hardenedTitle: string;
-  hardened: string;
+  // Optional: a case with no honest security angle renders as a single panel.
+  hardenedTitle?: string;
+  hardened?: string;
 }
 
 export interface Credential {
@@ -107,9 +111,9 @@ export const ROLES: Role[] = [
     company: 'Multi-brand studio, London',
     summary: {
       engineer:
-        'Rebuilt the customer ordering portal from Svelte to Next.js with a fresh Directus CMS. Automated fulfilment end to end through the DPD courier API, set up GitHub Actions CI/CD from scratch and recovered about 50% of server capacity through a full infrastructure audit.',
+        'Built an internal ops dashboard monitoring about 20 sites and services, and a custom Directus CMS that replaced Fusioo and cut data entry by about 80%. Rebuilt the ordering portal from Svelte to Next.js and automated fulfilment through the DPD courier API. Delivered a quote generator, a pricing estimator and reporting and insights tools for sales, design and production. Set up GitHub Actions CI/CD from scratch and recovered about 50% of server capacity through an infrastructure audit.',
       security:
-        'Sole owner of the whole attack surface: ordering flows, CMS, courier API integrations and the servers they run on. My infrastructure audit covered hardening as well as capacity.',
+        'Sole owner of the whole attack surface: ordering flows, CMS, courier API integrations and the servers they run on. Built security monitoring into my own ops dashboard, covering intrusion signals, exposed files, SSL and scheduled server scans. Audited and patched eight neglected WordPress sites, and ran an infrastructure audit that covered hardening as well as capacity.',
     },
     tags: ['Next.js', 'TypeScript', 'Directus', 'Docker', 'GitHub Actions', 'AWS'],
   },
@@ -151,26 +155,57 @@ export const ROLES: Role[] = [
 
 export const CASES: CaseStudy[] = [
   {
-    title: 'Ordering portal rebuild',
-    built: 'Moved from Svelte to Next.js with a fresh Directus CMS and merged the shop pathways into one flow.',
+    id: 'ops',
+    title: 'Ops dashboard',
+    metric: '~20',
+    built:
+      'Designed and built an internal ops dashboard in Next.js and TypeScript watching about 20 sites and services: uptime, traffic and orders, SaaS performance, server health, Sentry errors, deploys, cron and scheduled job health, and daily event logs.',
+    hardenedTitle: 'intrusion signals + exposed files',
+    hardened:
+      'Added SSL certificate monitoring, intrusion signal checks, exposed-file detection and scheduled server security scans. It caught broken SSL cron jobs and files exposed by users reusing credentials, which led to locked-down access and new firewall rules.',
+  },
+  {
+    id: 'wordpress',
+    title: 'WordPress estate audit',
+    metric: '8 sites',
+    labels: ['Audited', 'Remediated'],
+    built:
+      'Audited eight neglected WordPress sites: worked out who owned each one, then reviewed every user account and how each site was actually being used.',
+    hardenedTitle: 'outdated core, plugins + xmlrpc',
+    hardened:
+      'Found badly outdated WordPress core, unpatched plugins and an exposed xmlrpc.php. Backed every site up, then patched and updated each one.',
+  },
+  {
+    id: 'cms',
+    title: 'Custom CMS + ordering portal',
+    metric: '−80%',
+    built:
+      'Replaced Fusioo, a data-workflow tool that was being used as a CMS, with a purpose-built CMS on Directus that has instant previews and in-page editing. It cut the CMS manager’s data entry by about 80%. Rebuilt the ordering portal from Svelte to Next.js on top of it.',
     hardenedTitle: 'auth + order flows',
     hardened: 'Reviewed auth boundaries and CMS roles, and treated every endpoint as hostile input.',
   },
   {
+    id: 'tools',
+    title: 'Sales + production tooling',
+    built:
+      'Built the internal tools the business runs on: a quote generator integrated with the company’s SaaS platform, a pricing estimator for the production team, and reporting and insights tools used in sales and design reviews.',
+  },
+  {
+    id: 'infra',
     title: 'Infrastructure audit',
     metric: '~50%',
     built: 'Recovered about half the server capacity through a full infrastructure audit.',
     hardenedTitle: 'smaller attack surface',
     hardened: 'Removed unused services and standardised deploys behind GitHub Actions CI/CD.',
   },
-  {
-    title: 'Email capture, 13 sites',
-    metric: '+86%',
-    built: 'Built a Vite app on AWS and embedded it via GTM across AreMedia’s estate.',
-    hardenedTitle: 'third-party script risk',
-    hardened: 'When one script runs on 13 sites, a single mistake reaches all of them. I learned supply-chain risk on real traffic.',
-  },
 ];
+
+// Which case studies each page shows, in order.
+export const CASE_ORDER: Record<Track | 'hub', CaseStudy['id'][]> = {
+  hub: ['ops', 'wordpress', 'cms'],
+  engineer: ['ops', 'cms', 'tools', 'infra'],
+  security: ['ops', 'wordpress', 'infra', 'cms'],
+};
 
 export const TOOLKIT: Record<Track, { group: string; items: string[] }[]> = {
   engineer: [
