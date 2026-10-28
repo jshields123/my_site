@@ -111,7 +111,7 @@ export const ROLES: Role[] = [
     company: 'Multi-brand studio, London',
     summary: {
       engineer:
-        'Built an internal ops dashboard monitoring about 20 sites and services, and a custom Directus CMS that replaced Fusioo and cut data entry by about 80%. Rebuilt the ordering portal from Svelte to Next.js and automated fulfilment through the DPD courier API. Delivered a quote generator, a pricing estimator and reporting and insights tools for sales, design and production. Set up GitHub Actions CI/CD from scratch and recovered about 50% of server capacity through an infrastructure audit.',
+        'Built an internal ops dashboard monitoring about 20 sites and services, and rebuilt the ordering portal from Svelte to Next.js with its own custom CMS on a Directus backend, which replaced Fusioo and cut data entry by about 80%. Automated fulfilment through the DPD courier API. Delivered a quote generator, a pricing estimator and reporting and insights tools for sales, design and production. Set up GitHub Actions CI/CD from scratch and recovered about 50% of server capacity through an infrastructure audit.',
       security:
         'Sole owner of the whole attack surface: ordering flows, CMS, courier API integrations and the servers they run on. Built security monitoring into my own ops dashboard, covering intrusion signals, exposed files, SSL and scheduled server scans. Audited and patched eight neglected WordPress sites, and ran an infrastructure audit that covered hardening as well as capacity.',
     },
@@ -177,10 +177,10 @@ export const CASES: CaseStudy[] = [
   },
   {
     id: 'cms',
-    title: 'Custom CMS + ordering portal',
+    title: 'Ordering portal + built-in CMS',
     metric: '−80%',
     built:
-      'Replaced Fusioo, a data-workflow tool that was being used as a CMS, with a purpose-built CMS on Directus that has instant previews and in-page editing. It cut the CMS manager’s data entry by about 80%. Rebuilt the ordering portal from Svelte to Next.js on top of it.',
+      'Rebuilt the ordering portal from Svelte to Next.js with a custom CMS built into it, using Directus as the backend. It replaced Fusioo, a data-workflow tool that was being used as a CMS, and added instant previews and in-page editing, cutting the CMS manager’s data entry by about 80%.',
     hardenedTitle: 'auth + order flows',
     hardened: 'Reviewed auth boundaries and CMS roles, and treated every endpoint as hostile input.',
   },
