@@ -1,5 +1,4 @@
 // Single source of truth for both tracks. Facts are shared; only framing differs.
-// Anything marked VERIFY is wording Jack should confirm before launch.
 
 export type Track = 'engineer' | 'security';
 
@@ -110,7 +109,6 @@ export const ROLES: Role[] = [
       engineer:
         'Rebuilt the customer ordering portal from Svelte to Next.js with a fresh Directus CMS. Automated fulfilment end to end through the DPD courier API, set up GitHub Actions CI/CD from scratch and recovered about 50% of server capacity through a full infrastructure audit.',
       security:
-        // VERIFY: framing of the audit as security hardening
         'Sole owner of the whole attack surface: ordering flows, CMS, courier API integrations and the servers they run on. My infrastructure audit covered hardening as well as capacity.',
     },
     tags: ['Next.js', 'TypeScript', 'Directus', 'Docker', 'GitHub Actions', 'AWS'],
@@ -156,7 +154,6 @@ export const CASES: CaseStudy[] = [
     title: 'Ordering portal rebuild',
     built: 'Moved from Svelte to Next.js with a fresh Directus CMS and merged the shop pathways into one flow.',
     hardenedTitle: 'auth + order flows',
-    // VERIFY
     hardened: 'Reviewed auth boundaries and CMS roles, and treated every endpoint as hostile input.',
   },
   {
@@ -164,7 +161,6 @@ export const CASES: CaseStudy[] = [
     metric: '~50%',
     built: 'Recovered about half the server capacity through a full infrastructure audit.',
     hardenedTitle: 'smaller attack surface',
-    // VERIFY
     hardened: 'Removed unused services and standardised deploys behind GitHub Actions CI/CD.',
   },
   {
