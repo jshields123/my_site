@@ -1,1 +1,1 @@
-export const ROUTES = ['/', '/engineer', '/security', '/how-its-built'];
+export { ROUTES } from '../../content/routes';

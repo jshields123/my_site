@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from 'next';
-import { headers } from 'next/headers';
+import { connection } from 'next/server';
 import { Syne, Inter, IBM_Plex_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { PERSON } from '@/content/profile';
+import { BASE_OPEN_GRAPH } from '@/lib/metadata';
 import './globals.css';
 
 const display = Syne({ subsets: ['latin'], weight: ['500', '700', '800'], variable: '--font-display' });
@@ -11,10 +12,10 @@ const mono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], variabl
 
 export const metadata: Metadata = {
   metadataBase: new URL(PERSON.siteUrl),
-  title: { default: 'Jack Shields — Engineer & Penetration Tester', template: '%s' },
+  title: { default: 'Jack Shields — Engineer & Penetration Tester', template: '%s — Jack Shields' },
   description:
     'Senior full-stack engineer and eWPT/eJPT-certified penetration tester. I build the web, and I break it.',
-  openGraph: { type: 'website', siteName: PERSON.name, locale: 'en_GB' },
+  openGraph: BASE_OPEN_GRAPH,
   twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
 };
@@ -27,8 +28,8 @@ export const viewport: Viewport = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  // Reading request headers opts every page into dynamic rendering, which per-request CSP nonces require.
-  await headers();
+  // Per-request CSP nonces need every page rendered per request, not prerendered at build time.
+  await connection();
   return (
     <html lang="en-GB" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
       <body>

@@ -35,6 +35,7 @@ export const PERSON = {
   email: 'jackcyberpro30@gmail.com',
   location: 'London · Remote',
   siteUrl: 'https://jackshields.pro',
+  domain: 'jackshields.pro',
   links: {
     github: 'https://github.com/jshields123',
     linkedin: 'https://www.linkedin.com/in/jackshields123/',
@@ -48,6 +49,11 @@ export const TRACKS: Record<Track, {
   role: string;
   headline: [string, string, string];
   lede: string;
+  // Short line under the split hero, and the copy on the hub's track cards.
+  short: string;
+  cardKicker: string;
+  cardTitle: string;
+  cardBody: string;
   about: string[];
   metaTitle: string;
   metaDescription: string;
@@ -64,10 +70,14 @@ export const TRACKS: Record<Track, {
       'I own products end to end: CI/CD, API design, front-end delivery and the server audit, often all in the same week.',
       'My background spans product engineering at scale, early-stage startups and commercial consulting. I’m eWPT and eJPT certified, so security is part of how I build, not something added later.',
     ],
-    metaTitle: 'Jack Shields — Senior Software Engineer',
+    metaTitle: 'Senior Software Engineer',
     metaDescription:
       'Senior full-stack software engineer building with security in mind. Infrastructure, APIs and front-end delivery, end to end.',
     crossLink: 'I also test for security',
+    short: 'Senior full-stack engineer and sole developer across a multi-brand platform for blue-chip consumer brands.',
+    cardKicker: 'For engineering teams',
+    cardTitle: 'The engineer',
+    cardBody: 'Full-stack delivery: infra, APIs and front end, five years in production.',
   },
   security: {
     path: '/security',
@@ -80,10 +90,14 @@ export const TRACKS: Record<Track, {
       'I’m a developer moving into penetration testing. I read source code, understand the frameworks underneath and write findings that a development team can act on.',
       'I have a degree in criminology and psychology, so I’m as interested in why systems get attacked as in how.',
     ],
-    metaTitle: 'Jack Shields — Penetration Tester',
+    metaTitle: 'Penetration Tester',
     metaDescription:
       'eWPT and eJPT certified penetration tester with five years as a production full-stack engineer. Web application testing, recon and developer-friendly reporting.',
     crossLink: 'I’ve shipped production apps for five years',
+    short: 'eWPT · eJPT. I test web apps with five years of build experience behind me.',
+    cardKicker: 'For security teams',
+    cardTitle: 'The pen tester',
+    cardBody: 'eWPT, eJPT and web app testing, from someone who has built what you’re testing.',
   },
 };
 

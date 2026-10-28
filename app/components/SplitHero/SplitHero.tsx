@@ -31,7 +31,9 @@ export function SplitHero() {
     const go = (value: number) => {
       target = Math.max(4, Math.min(96, value));
       input.value = String(Math.round(target));
-      el.dataset.lead = target >= REST ? 'build' : 'break';
+      const lead = target >= REST ? 'build' : 'break';
+      el.dataset.lead = lead;
+      input.setAttribute('aria-valuetext', `${lead === 'build' ? 'Builder' : 'Breaker'} leads, ${Math.round(target)}%`);
       if (!frame) frame = requestAnimationFrame(paint);
     };
     const fromPointer = (e: PointerEvent) => {
@@ -49,6 +51,7 @@ export function SplitHero() {
     el.addEventListener('pointerdown', onDown);
     el.addEventListener('pointerleave', onLeave);
     window.addEventListener('pointerup', onUp);
+    window.addEventListener('pointercancel', onUp);
     input.addEventListener('input', onInput);
     go(REST);
     return () => {
@@ -57,6 +60,7 @@ export function SplitHero() {
       el.removeEventListener('pointerdown', onDown);
       el.removeEventListener('pointerleave', onLeave);
       window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
       input.removeEventListener('input', onInput);
     };
   }, []);
@@ -68,20 +72,20 @@ export function SplitHero() {
       <div className={`${styles.side} ${styles.build}`} aria-hidden="true">
         <div className={styles.top}><span>{TRACKS.engineer.role}</span></div>
         <p className={styles.title}>I <em>build</em><br />the web</p>
-        <div className={styles.foot}><p>{TRACKS.engineer.lede.split('.')[0]}.</p><span>( 01 / Builder )</span></div>
+        <div className={styles.foot}><p>{TRACKS.engineer.short}</p><span>( 01 / Builder )</span></div>
       </div>
 
       <div className={`${styles.side} ${styles.break}`} aria-hidden="true">
         <div className={styles.scan} />
         <div className={`${styles.top} ${styles.topRight}`}><span>{TRACKS.security.role}</span></div>
         <p className={styles.title}>I <em>break</em><br />the web</p>
-        <div className={styles.foot}><span>( 02 / Breaker )</span><p>eWPT · eJPT. I test web apps with five years of build experience behind me.</p></div>
+        <div className={styles.foot}><span>( 02 / Breaker )</span><p>{TRACKS.security.short}</p></div>
       </div>
 
       <div className={styles.handle} aria-hidden="true"><span>⟷</span></div>
       <label className={styles.range}>
         <span className="sr-only">Balance between builder and breaker</span>
-        <input ref={slider} type="range" min={4} max={96} defaultValue={REST} aria-valuetext="Builder and breaker" />
+        <input ref={slider} type="range" min={4} max={96} defaultValue={REST} aria-valuetext="Builder leads, 50%" />
       </label>
       <p className={styles.hint} aria-hidden="true">drag · or move your cursor</p>
     </section>

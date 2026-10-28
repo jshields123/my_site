@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { PERSON } from '@/content/profile';
 import { buildCsp } from '@/lib/csp';
 import { SECURITY_HEADERS } from '@/lib/headers';
@@ -8,15 +8,18 @@ import { Contact } from '../components/Contact/Contact';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'How it’s built — Jack Shields',
+  title: 'How it’s built',
   description: 'The architecture, security controls and CI pipeline behind jackshields.pro.',
   alternates: { canonical: '/how-its-built' },
 };
+
+export const viewport: Viewport = { themeColor: '#0b0b0c' };
 
 const DECISIONS = [
   { k: 'No database, no auth, no CMS', v: 'Content lives in typed TypeScript files. Leaving out a backend removes most of the attack surface.' },
   { k: 'Per-request CSP nonce', v: 'A proxy issues a fresh random nonce for every request. Scripts only run if they carry it, with no unsafe-inline and no unsafe-eval.' },
   { k: 'Trusted Types: not yet', v: 'I tried enforcing it, but the Next.js 16 runtime writes raw strings to innerHTML and breaks hydration. A pass-through policy would only fake the control, so it stays off and is documented here until the framework supports it.' },
+  { k: 'Fetch Metadata isolation', v: 'Cross-site requests that are not plain page visits get a 403, using the Sec-Fetch-* headers browsers attach. That stops CSRF-style requests and embedding from other sites.' },
   { k: 'Zero third-party origins', v: 'Fonts are self-hosted at build time and analytics is first-party and cookieless, so the policy allows nothing off-site.' },
   { k: 'Near-zero client JS', v: 'Accordions use native <details>, scroll reveals use CSS scroll-driven animations, and only the split hero hydrates.' },
   { k: 'Minimal dependencies', v: 'Four runtime packages, exact-pinned, with installs locked by npm ci.' },
@@ -31,7 +34,7 @@ const PIPELINE = [
   ['audit', 'npm audit, which fails on high-severity advisories'],
   ['codeql', 'GitHub CodeQL static analysis'],
   ['secrets', 'gitleaks scan of the full history'],
-  ['dast', 'OWASP ZAP baseline scan against a production build'],
+  ['dast', 'OWASP ZAP baseline scan against a production build, warnings fail the build'],
 ];
 
 export default function HowItsBuilt() {

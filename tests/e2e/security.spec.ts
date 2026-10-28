@@ -52,3 +52,15 @@ test('security.txt is served and in date', async ({ request }) => {
   const expires = new Date(body.match(/Expires: (.+)/)?.[1] ?? 0);
   expect(expires.getTime()).toBeGreaterThan(Date.now());
 });
+
+test.describe('Fetch Metadata isolation', () => {
+  test('refuses cross-site subresource requests', async ({ request }) => {
+    const res = await request.get('/', { headers: { 'Sec-Fetch-Site': 'cross-site', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'script' } });
+    expect(res.status()).toBe(403);
+  });
+
+  test('allows a cross-site link click', async ({ request }) => {
+    const res = await request.get('/engineer', { headers: { 'Sec-Fetch-Site': 'cross-site', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Dest': 'document' } });
+    expect(res.status()).toBe(200);
+  });
+});

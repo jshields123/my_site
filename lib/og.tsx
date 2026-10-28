@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { PERSON, TRACKS } from '@/content/profile';
 
 export const OG_SIZE = { width: 1200, height: 630 };
 
@@ -15,15 +16,15 @@ export function ogImage(variant: Variant) {
         <span>I <span style={{ color: c.accent }}>{word}</span></span>
         <span>the web</span>
       </div>
-      <div style={{ fontSize: 26 }}>Jack Shields · jackshields.pro</div>
+      <div style={{ fontSize: 26 }}>{`${PERSON.name} · ${PERSON.domain}`}</div>
     </div>
   );
   const flexes = ({ hub: [1, 1], engineer: [2.2, 0.8], security: [0.8, 2.2] } as const)[variant];
   return new ImageResponse(
     (
       <div style={{ width: '100%', height: '100%', display: 'flex' }}>
-        {panel(light, 'build', 'Software Engineer', flexes[0])}
-        {panel(dark, 'break', 'Penetration Tester', flexes[1])}
+        {panel(light, 'build', TRACKS.engineer.role, flexes[0])}
+        {panel(dark, 'break', TRACKS.security.role, flexes[1])}
       </div>
     ),
     OG_SIZE,
