@@ -1,42 +1,41 @@
-import type { Metadata } from 'next';
-import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
-import { Analytics } from '@vercel/analytics/react';
+import type { Metadata, Viewport } from 'next';
+import { headers } from 'next/headers';
+import { Syne, Inter, IBM_Plex_Mono } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
+import { PERSON } from '@/content/profile';
 import './globals.css';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
+const display = Syne({ subsets: ['latin'], weight: ['500', '700', '800'], variable: '--font-display' });
+const sans = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const mono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-mono' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: 'Jack Shields — Senior Software Engineer',
+  metadataBase: new URL(PERSON.siteUrl),
+  title: { default: 'Jack Shields — Engineer & Penetration Tester', template: '%s' },
   description:
-    'Senior full-stack software engineer building with security in mind. Comfortable owning the full product lifecycle — infrastructure, DevOps, API design, and front-end delivery.',
-  openGraph: {
-    type: 'website',
-    url: siteUrl,
-    title: 'Jack Shields — Senior Software Engineer',
-    description:
-      'Senior full-stack software engineer building with security in mind. Comfortable owning the full product lifecycle — infrastructure, DevOps, API design, and front-end delivery.',
-    siteName: 'Jack Shields',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Jack Shields — Senior Software Engineer',
-    description:
-      'Senior full-stack software engineer building with security in mind. Comfortable owning the full product lifecycle — infrastructure, DevOps, API design, and front-end delivery.',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+    'Senior full-stack engineer and eWPT/eJPT-certified penetration tester. I build the web, and I break it.',
+  openGraph: { type: 'website', siteName: PERSON.name, locale: 'en_GB' },
+  twitter: { card: 'summary_large_image' },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#eceae4' },
+    { media: '(prefers-color-scheme: dark)', color: '#0b0b0c' },
+  ],
+};
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  // Reading request headers opts every page into dynamic rendering, which per-request CSP nonces require.
+  await headers();
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html lang="en-GB" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
       <body>
+        <a href="#main" className="skip">Skip to content</a>
         {children}
-        <Analytics />
+        {/* The analytics endpoint only exists on Vercel; skip it locally and in CI. */}
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   );

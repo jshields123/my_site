@@ -1,0 +1,5 @@
+.head { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; align-items: baseline; margin-bottom: 7vh; }
+.num { grid-column: 1 / span 3; font-family: var(--mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.title { grid-column: 4 / span 9; font-family: var(--display); font-weight: 700; font-size: clamp(36px, 5.6vw, 92px); line-height: .95; letter-spacing: -.035em; text-wrap: balance; }
+[data-theme='dark'] .title { font-family: var(--mono); font-weight: 500; letter-spacing: -.06em; }
+@media (max-width: 760px) { .num, .title { grid-column: 1 / -1; } }

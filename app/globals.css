@@ -1,0 +1,57 @@
+:root {
+  --light: #eceae4;
+  --light-ink: #121212;
+  --light-muted: #5f5c55;
+  --light-line: #d3cfc4;
+  --dark: #0b0b0c;
+  --dark-ink: #f1efe9;
+  --dark-muted: #94908a;
+  --dark-line: #26252a;
+  --blue: #2f43f5;
+  --red: #ff4536;
+
+  --display: var(--font-display), system-ui, sans-serif;
+  --sans: var(--font-sans), system-ui, sans-serif;
+  --mono: var(--font-mono), ui-monospace, monospace;
+  --gutter: clamp(16px, 4vw, 48px);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+[data-theme='light'] { --bg: var(--light); --ink: var(--light-ink); --muted: var(--light-muted); --line: var(--light-line); --accent: var(--blue); --on-accent: #fff; }
+[data-theme='dark'] { --bg: var(--dark); --ink: var(--dark-ink); --muted: var(--dark-muted); --line: var(--dark-line); --accent: var(--red); --on-accent: #0b0b0c; }
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--light);
+  color: var(--light-ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+[data-theme] { background: var(--bg); color: var(--ink); }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+::selection { background: var(--accent, var(--blue)); color: var(--on-accent, #fff); }
+:focus-visible { outline: 2px solid var(--accent, var(--blue)); outline-offset: 3px; border-radius: 2px; }
+
+.wrap { padding-inline: var(--gutter); }
+.mono { font-family: var(--mono); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: absolute; left: 12px; top: -60px; z-index: 100; background: var(--light-ink); color: var(--light); padding: 10px 14px; border-radius: 6px; font-size: 14px; }
+.skip:focus { top: 12px; }
+
+/* Scroll reveal with zero JS: progressive enhancement via scroll-driven animations. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+    @keyframes reveal { from { opacity: 0; transform: translateY(48px); } to { opacity: 1; transform: none; } }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
