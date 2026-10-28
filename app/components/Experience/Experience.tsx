@@ -1,37 +1,28 @@
+import { ROLES, type Track } from '@/content/profile';
 import styles from './Experience.module.css';
-import { EXPERIENCE } from './Experience.constants';
 
-const Experience = () => {
+// Native <details> gives an accessible accordion with no client JavaScript.
+export function Experience({ track }: { track: Track }) {
   return (
-    <section id="experience" className={styles.experience}>
-      <div className={styles.inner}>
-        <h2 className={styles.label}>Experience</h2>
-        <ol className={styles.list}>
-          {EXPERIENCE.map((role) => (
-            <li key={role.company + role.dates} className={styles.card}>
-              <div className={styles.cardHeader}>
-                <div>
-                  <h3 className={styles.role}>{role.role}</h3>
-                  <p className={styles.company}>{role.company}</p>
-                </div>
-                <span className={styles.dates}>{role.dates}</span>
-              </div>
-              <p className={styles.description}>{role.description}</p>
-              {role.tags && (
-                <div className={styles.tags}>
-                  {role.tags.map((tag) => (
-                    <span key={tag} className={styles.tag}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
+    <ol className={`${styles.list} reveal`}>
+      {ROLES.map((r, i) => (
+        <li key={r.company}>
+          <details className={styles.role} open={i === 0}>
+            <summary>
+              <span className={styles.dates}>{r.dates}</span>
+              <span className={styles.title}>{r.title}</span>
+              <span className={styles.company}>{r.company}</span>
+              <span className={styles.icon} aria-hidden="true" />
+            </summary>
+            <div className={styles.body}>
+              <p>{r.summary[track]}</p>
+              <ul className={styles.tags} aria-label="Stack">
+                {r.tags.map((t) => <li key={t}>{t}</li>)}
+              </ul>
+            </div>
+          </details>
+        </li>
+      ))}
+    </ol>
   );
-};
-
-export { Experience };
+}

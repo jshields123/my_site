@@ -1,0 +1,11 @@
+.footer { padding: 20vh var(--gutter) 36px; }
+.cross { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; padding: 28px 0; margin-bottom: 18vh; border-block: 1px solid var(--line); font-family: var(--mono); font-size: 14px; color: var(--muted); }
+.crossCta { color: var(--ink); transition: color .2s, translate .4s var(--ease); }
+.cross:hover .crossCta { color: var(--accent); translate: 8px 0; }
+.cta { display: inline-block; font-family: var(--display); font-weight: 800; font-size: clamp(32px, 8.6vw, 170px); line-height: .86; letter-spacing: -.05em; text-transform: uppercase; }
+[data-theme='dark'] .cta { font-family: var(--mono); font-weight: 500; text-transform: none; letter-spacing: -.07em; }
+.cta em { font-style: normal; transition: color .3s; }
+.cta:hover em { color: var(--accent); }
+.bar { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 9vh; padding-top: 18px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.bar ul { display: flex; flex-wrap: wrap; gap: 18px; list-style: none; }
+.bar a:hover { color: var(--accent); }

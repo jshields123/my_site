@@ -1,0 +1,10 @@
+.bar { position: sticky; top: 0; z-index: 20; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 16px var(--gutter); font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase;
+  background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.overlay { position: fixed; inset: 0 0 auto 0; background: none; backdrop-filter: none; border: 0; color: #fff; mix-blend-mode: difference; }
+.brand { font-weight: 500; }
+.bar ul { display: flex; gap: clamp(12px, 2.4vw, 28px); list-style: none; }
+.bar a { position: relative; padding-block: 4px; }
+.bar a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; scale: 0 1; transform-origin: left; transition: scale .4s var(--ease); }
+.bar a:hover::after, .bar a[aria-current='page']::after { scale: 1 1; }
+@media (max-width: 560px) { .bar li:last-child { display: none; } }
