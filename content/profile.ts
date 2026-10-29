@@ -36,7 +36,7 @@ export interface Credential {
 export const PERSON = {
   name: 'Jack Shields',
   email: 'jackcyberpro30@gmail.com',
-  location: 'London · Remote',
+  location: 'Sheffield, UK · Hybrid or remote',
   siteUrl: 'https://jackshields.pro',
   domain: 'jackshields.pro',
   links: {
